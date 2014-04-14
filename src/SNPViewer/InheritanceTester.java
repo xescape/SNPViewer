@@ -7,10 +7,6 @@ public class InheritanceTester extends tester {
 		super();
 	}
 
-	@Override
-	protected void testA(){
-		testB();
-	}
 	
 	protected void testC(){
 		System.out.println("C++");

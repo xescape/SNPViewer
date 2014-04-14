@@ -26,49 +26,8 @@ public class tester {
 //		String s2 = "3045.\t3142.\tTGSKN\tARI.V\nME49\tVEG.S\nP89.S\tGT1.S";
 //		System.out.println(s1.equals(s2));
 		
-		
-		
-		try {
-			String rawData = new String(Files.readAllBytes(filePath));
-			Matcher headerMatcher = headerPattern.matcher(rawData);
-			while(headerMatcher.find()){
-				System.out.println("Type Matching");
-				System.out.println(headerMatcher.group(1));
-				System.out.println("----------------");
-			}
-			
-			
-			Matcher chrMatcher = chrPattern.matcher(rawData);
-			
-			
-			while(chrMatcher.find()){
-				System.out.println(chrMatcher.group(2));
-			Matcher matrixMatcher = matrixPattern.matcher(chrMatcher.group(2));
-				while(matrixMatcher.find()){
-					String matrix = matrixMatcher.group(1);
-					Matcher lineMatcher = linePattern.matcher(matrix);
-					while(lineMatcher.find()){
-						System.out.println("Line Matching");
-						System.out.println(lineMatcher.group());
-					}
-				}
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(new Color(16777215));
 	
 	}
 
-	protected void testA(){
-		testB();
-	}
-	
-	protected void testB(){
-		testC();
-	}
-	
-	protected void testC(){
-		System.out.println("C");
-	}
 }

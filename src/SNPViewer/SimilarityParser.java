@@ -30,7 +30,7 @@ public class SimilarityParser extends DataParser {
 		String chr;
 		TreeMap<Integer, ArrayList<DataPoint>> results = new TreeMap<Integer, ArrayList<DataPoint>>();
 		ChromosomeNameConverter cnc = new ChromosomeNameConverter();
-		legend = new HashMap<String, Color>();
+		
 		
 		Pattern headerPattern = Pattern.compile("[$]\\n(.*?)\\n[$]", Pattern.DOTALL);
 		Pattern chrPattern = Pattern.compile("@([^@]+?)\\n(.+?)(?=@|$)", Pattern.DOTALL);
@@ -52,15 +52,22 @@ public class SimilarityParser extends DataParser {
 			results.put(cnc.convert(chr), dps);
 		}
 		
-		legend.put(types[0], new Color(255,0,0));
-		legend.put(types[1], new Color(0,255,0));
-		legend.put(types[2], new Color(0,0,255));
-		
-		
+		setLegend(types);
 		return results;
 	}
 	
-	public DataPoint parseMatrix(String matrix, int position ){
+	
+	protected void setLegend(String[] types){
+		Color[] colors = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255)};
+		legend = new HashMap<String, Color>();
+		
+		if(types.length > 3){ throw new IndexOutOfBoundsException("There are too many type for the legend");}
+		for(int x = 0; x > types.length; x++){
+			legend.put(types[x], colors[x]);
+		}
+	}
+	
+	protected DataPoint parseMatrix(String matrix, int position ){
 		Pattern linePattern = Pattern.compile("^(.+?) - (.+?)[:] ([0-9.]+?)(?=\\n|$)", Pattern.MULTILINE);
 		Matcher lineMatcher = linePattern.matcher(matrix);
 		Float[] info = new Float[3];

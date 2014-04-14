@@ -8,7 +8,7 @@ public class InheritanceTestRunner {
 	
 	public static void main(String[] args){
 		InheritanceTester A = new InheritanceTester();
-		A.testA();
+
 	}
 
 }

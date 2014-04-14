@@ -8,14 +8,15 @@ public class Runner {
 
 	public static void main(String[] args) throws IllegalAccessException {
 		// TODO Auto-generated method stub
-		String name = "IntactClusters";
-		Path filePath = Paths.get("/data/javi/Toxo/64Genomes/Counting/intact.sim");
+		String name = "ClusterPattern";
+		Path filePath = Paths.get("F:\\Documents\\ProjectData\\64Genomes\\Counting\\pattern.txt");
 //        Path densityPath = Paths.get("/data/javi/Toxo/64Genomes/Counting");
 //		TypeParser tp = new TypeParser(filePath, "topfive");
 		
 
 		
-		SimilarityParser tp = new SimilarityParser(filePath, "default");
+		ClusterPatternParser tp = new ClusterPatternParser(filePath, "default");
+//		SimilarityParser tp = new SimilarityParser(filePath, "default");
 //		TargetedTypeParser tp = new TargetedTypeParser(filePath, "similarity", "3045.");
 		
 //		TypeParser dp = new TypeParser(densityPath, "density");

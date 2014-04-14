@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 public class TargetedTypeParser extends TypeParser {
 
+	//This is not currently in use. Here for reference.
 	
 String target;
 
