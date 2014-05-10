@@ -1,5 +1,6 @@
 package SNPViewer;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -45,7 +46,7 @@ protected HashMap<String, Color> legend;
 
 protected final int BASE_RECT_HEIGHT = 100;
 protected final int BASE_RECT_WIDTH = 20;
-protected final int TEXT_Y_OFFSET = 50;
+protected final int TEXT_Y_OFFSET = 85;
 
 //These two numbers act as the "print head", determining where then next element is to be drawn.
 protected int xCoord;
@@ -90,6 +91,7 @@ protected void init(){
 		//TODO starts a new line representing a new chromsome, and writes the name of the new chr.
 		xCoord = 100 * mag;
 		yCoord += lineHeight;
+		graphics.setFont(new Font("TimesRoman", Font.PLAIN, 100));
 		graphics.setColor(Color.BLACK);
 		graphics.drawString(chrName, xCoord, yCoord + TEXT_Y_OFFSET);
 		xCoord += textSpaceWidth;
@@ -117,13 +119,16 @@ protected void init(){
 	
 	protected void drawLegend(){
 		newChromosome("legend");
+		graphics.setFont(new Font("TimesRoman", Font.PLAIN, 120));
 		FontMetrics fm = graphics.getFontMetrics();
 		for(Entry<String, Color> entry : legend.entrySet()){
 			graphics.setColor(Color.BLACK);
 			xCoord += 10;
 			graphics.drawString(entry.getKey(), xCoord, yCoord + TEXT_Y_OFFSET/3);
-			xCoord += fm.stringWidth(entry.getKey()) + 20;
-			drawNext(entry.getValue());
+			xCoord += fm.stringWidth(entry.getKey()) + 40;
+			for(int x = 0; x < 4; x++){
+				drawNext(entry.getValue());
+			}
 			xCoord += 50;
 		}
 	}

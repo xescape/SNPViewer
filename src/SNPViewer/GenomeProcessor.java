@@ -54,6 +54,7 @@ ChromosomeNameConverter cnc = new ChromosomeNameConverter();
 		int tmpHeight = 0;
 		Image tmpImage = new BufferedImage(1, 1, 1);
 		Graphics tmpGraphics = tmpImage.getGraphics();
+		tmpGraphics.setFont(new Font("TimesNew", Font.PLAIN, 100));
 		FontMetrics tfm = tmpGraphics.getFontMetrics();
 		for(Entry<Integer, ArrayList<DataPoint>> entry : data.entrySet()){
 			ArrayList<DataPoint> chr = entry.getValue();

@@ -2,6 +2,13 @@ package SNPViewer;
 
 import java.awt.Color;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +37,15 @@ public class ClusterPatternParser extends SimilarityParser {
 	}
 	
 	@Override
+	public TreeMap<Integer, ArrayList<DataPoint>> parseData() {
+		TreeMap<Integer, ArrayList<DataPoint>> results = super.parseData();
+		
+		Map<String, Color> colormap = makeColorMap(results);
+		setLegend(colormap);
+		return results;
+	}
+	
+	@Override
 	protected DataPoint parseMatrix(String matrix, int position ){
 		Pattern linePattern = Pattern.compile("^(.+?) - (.+?)[:] ([0-9.]+?)(?=\\n|$)", Pattern.MULTILINE);
 		Matcher lineMatcher = linePattern.matcher(matrix);
@@ -37,7 +53,37 @@ public class ClusterPatternParser extends SimilarityParser {
 		lineMatcher.find();
 		info = Integer.parseInt(lineMatcher.group(3));
 		System.out.println(new Color(info));
-		return new DataPoint(position, position, new Color(info), matrix);
+		return new DataPoint(position, position, new Color(info), lineMatcher.group(2));
+	}
+	
+
+	protected void setLegend(Map<String, Color> colormap){
+		legend = new HashMap<String, Color>();
+		Iterator<Entry<String, Color>> itr = colormap.entrySet().iterator();
+		while(itr.hasNext()){
+			Entry<String, Color> next = itr.next();
+			legend.put(next.getKey(), next.getValue());
+		}
+	}
+	
+	protected Map<String, Color> makeColorMap(TreeMap<Integer, ArrayList<DataPoint>> data){
+		Map<String, Color> result = new HashMap<String, Color>();
+		Set<Entry<Integer, ArrayList<DataPoint>>> entrySet = data.entrySet();
+		Iterator<Entry<Integer, ArrayList<DataPoint>>> itr  = entrySet.iterator();
+		while(itr.hasNext()){
+			Entry<Integer, ArrayList<DataPoint>> next = itr.next();
+			Iterator<DataPoint> dataItr = next.getValue().iterator();
+			while(dataItr.hasNext()){
+				DataPoint point = dataItr.next();
+				String name = point.getData();
+				Color color = point.getColor();
+				if(!(result.containsKey(name)&&result.containsValue(color))){
+					result.put(name, color);
+				}
+			}
+		}
+		
+		return result;
 	}
 
 }
