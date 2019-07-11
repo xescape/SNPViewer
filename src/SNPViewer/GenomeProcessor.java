@@ -29,6 +29,15 @@ ChromosomeNameConverter cnc = new ChromosomeNameConverter();
 		width = 0;	
 	}
 	
+	public GenomeProcessor(TreeMap<Integer, ArrayList<DataPoint>> data, String name, ChromosomeNameConverter cnc){
+		this.data = (TreeMap<Integer, ArrayList<DataPoint>>) data.clone();
+		this.name = name;
+		height = 0;
+		textSpaceWidth = 0;
+		width = 0;
+		this.cnc = cnc;
+	}
+	
 	public void setDensity(TreeMap<Integer, ArrayList<DataPoint>> data, int min){
 		//This allows us to plot the snp density on top of the chromosomes. First we set the data, then we add to the other method. 
 		density = data;
@@ -67,7 +76,7 @@ ChromosomeNameConverter cnc = new ChromosomeNameConverter();
 			tmpHeight += lineHeight;
 		}
 		width = tmpWidth * rectWidth + textSpaceWidth + 200;
-		height = tmpHeight;
+		height = tmpHeight + lineHeight + 200;
 		
 		if(legend != null){
 			tmpWidth = 0;
@@ -106,7 +115,7 @@ ChromosomeNameConverter cnc = new ChromosomeNameConverter();
 			}	
 		}
 
-		drawLegend();
+//		drawLegend();
 		saveImage();
 	}
 	

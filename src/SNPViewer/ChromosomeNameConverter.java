@@ -43,4 +43,12 @@ public class ChromosomeNameConverter {
 	public int getChrNumber(){
 		return chrMap.size();
 	}
+	
+	public void setAlternateScheme(HashMap<String, Integer> scheme){
+		this.chrMap = scheme;
+		this.invMap = new HashMap<Integer, String>();
+		for(Map.Entry<String, Integer> entry : this.chrMap.entrySet()){
+			this.invMap.put(entry.getValue(), entry.getKey());
+		}
+	}
 }

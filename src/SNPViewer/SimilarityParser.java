@@ -58,7 +58,7 @@ public class SimilarityParser extends DataParser {
 	
 	
 	protected void setLegend(String[] types){
-		Color[] colors = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255)};
+		Color[] colors = {new Color(255,0,0), new Color(0,0,255), new Color(0,255,0)};
 		legend = new HashMap<String, Color>();
 		
 		if(types.length > 3){ throw new IndexOutOfBoundsException("There are too many type for the legend");}
@@ -76,8 +76,9 @@ public class SimilarityParser extends DataParser {
 			info[x] = Float.parseFloat(lineMatcher.group(3));
 			
 		}
-		System.out.println(new Color(info[0], info[1], info[2]));
-		return new DataPoint(position, position, new Color(info[0], info[1], info[2]), matrix);
+		System.out.println(new Color(info[0], info[2], info[1]));
+		// THIS LINE DETERMINES THE COLOR OF EACH ANCESTOR
+		return new DataPoint(position, position, new Color(info[0], info[2], info[1]), matrix);
 	}
 	
 

@@ -110,6 +110,9 @@ protected void init(){
 			System.out.println("saving image...");
 			graphics.drawImage(image, 0, 0, null);
 			ImageIO.write(image, "png", new File(name + ".png"));
+			//System.out.println(ImageIO.getWriterFormatNames());
+			
+			
 			System.out.println("done");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

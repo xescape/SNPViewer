@@ -61,7 +61,7 @@ public class TypeParser extends DataParser {
 	//defines the "type" of each strain
 	//not all strains must have a type. But if they don't, 
 	//they are excluded from the color scheme. 
-	protected String[] typeX = {"3045.", "3142."};
+	protected String[] typeX = {"3045.", "3142.", "ARI.V", "TGSKN"};
 	protected String[] typeI = {"GT1.S"};
 	protected String[] typeII = {"ME49"};
 	protected String[] typeIII = {"VEG.S"};
